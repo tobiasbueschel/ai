@@ -1,6 +1,6 @@
 import { azure } from '@ai-sdk/azure';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
 /**
  * prepare
@@ -9,7 +9,7 @@ import 'dotenv/config';
  * AZURE_API_KEY="<your_api_key>"
  */
 
-async function main() {
+run(async () => {
   // Basic text generation
   const basicResult = await generateText({
     model: azure.responses('gpt-5-mini'),
@@ -25,6 +25,4 @@ async function main() {
   console.log('\n=== Other Outputs ===');
   console.dir(basicResult.toolCalls, { depth: Infinity });
   console.dir(basicResult.toolResults, { depth: Infinity });
-}
-
-main().catch(console.error);
+});

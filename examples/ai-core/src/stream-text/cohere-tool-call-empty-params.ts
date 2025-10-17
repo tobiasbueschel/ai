@@ -1,4 +1,5 @@
 import { cohere } from '@ai-sdk/cohere';
+import { run } from '../lib/run';
 import {
   streamText,
   ModelMessage,
@@ -6,12 +7,11 @@ import {
   ToolResultPart,
   tool,
 } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 
 const messages: ModelMessage[] = [];
 
-async function main() {
+run(async () => {
   let toolResponseAvailable = false;
 
   const result = streamText({
@@ -84,6 +84,4 @@ async function main() {
   }
 
   toolResponseAvailable = toolCalls.length > 0;
-}
-
-main().catch(console.error);
+});

@@ -1,8 +1,8 @@
-import 'dotenv/config';
 import { xai } from '@ai-sdk/xai';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: xai('grok-3-latest'),
     prompt: 'What are the latest developments in AI?',
@@ -30,6 +30,4 @@ async function main() {
       console.log();
     }
   }
-}
-
-main().catch(console.error);
+});

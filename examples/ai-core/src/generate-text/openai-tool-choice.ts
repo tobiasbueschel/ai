@@ -1,10 +1,10 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { generateText, tool } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: openai('gpt-3.5-turbo'),
     maxOutputTokens: 512,
@@ -23,6 +23,4 @@ async function main() {
   });
 
   console.log(JSON.stringify(result, null, 2));
-}
-
-main().catch(console.error);
+});

@@ -1,8 +1,8 @@
 import { bedrock } from '@ai-sdk/amazon-bedrock';
+import { run } from '../lib/run';
 import { stepCountIs, streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: bedrock('us.anthropic.claude-3-7-sonnet-20250219-v1:0'),
     prompt: 'How many "r"s are in the word "strawberry"?',
@@ -29,6 +29,4 @@ async function main() {
 
   console.log();
   console.log('Warnings:', await result.warnings);
-}
-
-main().catch(console.error);
+});

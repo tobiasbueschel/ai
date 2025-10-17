@@ -1,8 +1,8 @@
 import { bedrock } from '@ai-sdk/amazon-bedrock';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const model = bedrock('us.anthropic.claude-3-7-sonnet-20250219-v1:0');
 
   const documentContent =
@@ -67,6 +67,4 @@ async function main() {
   console.log(
     'This enables effective prompt caching since document names are consistent!',
   );
-}
-
-main().catch(console.error);
+});

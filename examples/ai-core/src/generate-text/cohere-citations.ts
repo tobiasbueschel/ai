@@ -1,8 +1,8 @@
 import { cohere } from '@ai-sdk/cohere';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: cohere('command-r-plus'),
     messages: [
@@ -45,6 +45,4 @@ async function main() {
 
   console.log('\nFull result object:');
   console.log(JSON.stringify(result, null, 2));
-}
-
-main().catch(console.error);
+});

@@ -1,9 +1,9 @@
 import { google } from '@ai-sdk/google';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
 import fs from 'node:fs';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: google('gemini-2.5-flash-image-preview'),
     prompt:
@@ -21,6 +21,4 @@ async function main() {
       console.log(`Generated and saved image: output/${fileName}`);
     }
   }
-}
-
-main().catch(console.error);
+});

@@ -1,8 +1,8 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: openai('gpt-4o-mini'),
     prompt: 'Invent a new holiday and describe its traditions.',
@@ -14,6 +14,4 @@ async function main() {
 
   console.log('REQUEST BODY');
   console.log((await result.request).body);
-}
-
-main().catch(console.error);
+});

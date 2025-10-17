@@ -1,9 +1,9 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { experimental_generateImage as generateImage } from 'ai';
 import { presentImages } from '../lib/present-image';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const prompt = 'Santa Claus driving a Cadillac';
   const result = await generateImage({
     model: openai.image('gpt-image-1-mini'),
@@ -19,6 +19,4 @@ async function main() {
   });
 
   await presentImages([result.image]);
-}
-
-main().catch(console.error);
+});

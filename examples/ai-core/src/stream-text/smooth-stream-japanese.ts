@@ -1,7 +1,8 @@
 import { simulateReadableStream, smoothStream, streamText } from 'ai';
+import { run } from '../lib/run';
 import { MockLanguageModelV3 } from 'ai/test';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: new MockLanguageModelV3({
       doStream: async () => ({
@@ -38,6 +39,4 @@ async function main() {
   for await (const textPart of result.textStream) {
     process.stdout.write(textPart);
   }
-}
-
-main().catch(console.error);
+});

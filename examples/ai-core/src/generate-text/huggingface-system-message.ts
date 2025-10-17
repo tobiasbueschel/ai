@@ -1,8 +1,8 @@
 import { huggingface } from '@ai-sdk/huggingface';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: huggingface('meta-llama/Llama-3.1-8B-Instruct'),
     system:
@@ -13,6 +13,4 @@ async function main() {
   console.log(result.text);
   console.log();
   console.log('Usage:', result.usage);
-}
-
-main().catch(console.error);
+});

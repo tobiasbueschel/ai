@@ -1,6 +1,6 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 import { setTimeout } from 'node:timers/promises';
 import { performance } from 'node:perf_hooks';
 
@@ -149,7 +149,7 @@ const runCompletion = async () =>
     },
   });
 
-async function main() {
+run(async () => {
   let start = performance.now();
   const { text, usage, providerMetadata } = await runCompletion();
   let end = performance.now();
@@ -180,6 +180,4 @@ async function main() {
   console.log(`Second pass usage:`, usage2);
   console.log(`Second pass provider metadata:`, providerMetadata2);
   console.log(`First pass time: ${Math.floor(end - start)} ms`);
-}
-
-main().catch(console.error);
+});

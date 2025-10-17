@@ -1,9 +1,9 @@
-import 'dotenv/config';
 import { vertexAnthropic } from '@ai-sdk/google-vertex/anthropic';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
 import fs from 'node:fs';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: vertexAnthropic('claude-3-5-sonnet-v2@20241022'),
     messages: [
@@ -27,6 +27,4 @@ async function main() {
   for await (const textPart of result.textStream) {
     process.stdout.write(textPart);
   }
-}
-
-main().catch(console.error);
+});

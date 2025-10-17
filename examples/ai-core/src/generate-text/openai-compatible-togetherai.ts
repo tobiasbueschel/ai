@@ -1,8 +1,8 @@
-import 'dotenv/config';
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
 
-async function main() {
+run(async () => {
   const togetherai = createOpenAICompatible({
     baseURL: 'https://api.together.xyz/v1',
     name: 'togetherai',
@@ -20,6 +20,4 @@ async function main() {
   console.log();
   console.log('Token usage:', result.usage);
   console.log('Finish reason:', result.finishReason);
-}
-
-main().catch(console.error);
+});

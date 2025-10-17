@@ -1,8 +1,8 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   console.log('=== onChunk with raw chunks enabled ===');
 
   let textChunkCount = 0;
@@ -37,6 +37,4 @@ async function main() {
   console.log('- Raw chunks received in onChunk:', rawChunkCount);
   console.log('- Other chunks received in onChunk:', otherChunkCount);
   console.log('- Final text:', await result.text);
-}
-
-main().catch(console.error);
+});

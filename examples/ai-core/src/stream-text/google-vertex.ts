@@ -1,8 +1,8 @@
 import { vertex } from '@ai-sdk/google-vertex';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: vertex('gemini-1.5-pro'),
     system: 'You are a comedian. Only give funny answers.',
@@ -16,6 +16,4 @@ async function main() {
   console.log();
   console.log('Token usage:', await result.usage);
   console.log('Finish reason:', await result.finishReason);
-}
-
-main().catch(console.error);
+});

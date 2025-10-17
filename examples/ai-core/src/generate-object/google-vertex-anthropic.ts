@@ -1,9 +1,9 @@
-import 'dotenv/config';
 import { vertexAnthropic } from '@ai-sdk/google-vertex/anthropic';
+import { run } from '../lib/run';
 import { generateObject } from 'ai';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const result = await generateObject({
     model: vertexAnthropic('claude-3-5-sonnet-v2@20241022'),
     schema: z.object({
@@ -25,6 +25,4 @@ async function main() {
   console.log();
   console.log('Token usage:', result.usage);
   console.log('Finish reason:', result.finishReason);
-}
-
-main().catch(console.error);
+});

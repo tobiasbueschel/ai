@@ -1,8 +1,8 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   // Basic text generation
   const basicResult = await generateText({
     model: openai.responses('gpt-4.1-mini'),
@@ -18,6 +18,4 @@ async function main() {
   console.log('\n=== Other Outputs ===');
   console.log(basicResult.toolCalls);
   console.log(basicResult.toolResults);
-}
-
-main().catch(console.error);
+});

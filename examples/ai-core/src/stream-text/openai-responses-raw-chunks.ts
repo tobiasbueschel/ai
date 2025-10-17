@@ -1,8 +1,8 @@
-import 'dotenv/config';
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: openai.responses('o3-mini'),
     prompt: 'How many "r"s are in the word "strawberry"?',
@@ -51,6 +51,4 @@ async function main() {
   console.log('Raw chunks:', rawChunkCount);
   console.log('Final text:', fullText);
   console.log('Final reasoning:', fullReasoning);
-}
-
-main().catch(console.error);
+});

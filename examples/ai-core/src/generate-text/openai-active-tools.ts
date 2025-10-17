@@ -1,10 +1,10 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { generateText, stepCountIs, tool } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 
-async function main() {
+run(async () => {
   const { text } = await generateText({
     model: openai('gpt-4o'),
     tools: {
@@ -20,6 +20,4 @@ async function main() {
   });
 
   console.log(text);
-}
-
-main().catch(console.error);
+});

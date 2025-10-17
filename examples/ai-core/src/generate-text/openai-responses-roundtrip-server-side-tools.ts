@@ -1,6 +1,6 @@
 import { createOpenAI } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { generateText, tool } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 
 const openai = createOpenAI({
@@ -13,7 +13,7 @@ const openai = createOpenAI({
   },
 });
 
-async function main() {
+run(async () => {
   const { content } = await generateText({
     model: openai.responses('gpt-4o-mini'),
     tools: {
@@ -47,6 +47,4 @@ async function main() {
       console.log(`Text: ${part.text.substring(0, 80)}...`);
     }
   }
-}
-
-main().catch(console.error);
+});

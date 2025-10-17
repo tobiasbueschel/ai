@@ -1,8 +1,8 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: anthropic('claude-sonnet-4-0'),
     prompt: 'Write a short story and end it with the word END.',
@@ -17,6 +17,4 @@ async function main() {
     'Stop sequence:',
     result.providerMetadata?.anthropic?.stopSequence,
   );
-}
-
-main().catch(console.error);
+});

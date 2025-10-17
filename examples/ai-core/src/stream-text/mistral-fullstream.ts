@@ -1,10 +1,10 @@
 import { mistral } from '@ai-sdk/mistral';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: mistral('mistral-large-latest'),
     tools: {
@@ -75,6 +75,4 @@ async function main() {
         break;
     }
   }
-}
-
-main().catch(console.error);
+});

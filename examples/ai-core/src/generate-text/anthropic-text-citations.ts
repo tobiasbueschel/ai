@@ -1,8 +1,8 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: anthropic('claude-3-5-sonnet-20241022'),
     messages: [
@@ -43,6 +43,4 @@ async function main() {
       );
     }
   });
-}
-
-main().catch(console.error);
+});

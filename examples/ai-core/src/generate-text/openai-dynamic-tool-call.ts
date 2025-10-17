@@ -1,6 +1,6 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { dynamicTool, generateText, stepCountIs, ToolSet } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 
@@ -19,7 +19,7 @@ function dynamicTools(): ToolSet {
   };
 }
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: openai('gpt-4o'),
     stopWhen: stepCountIs(5),
@@ -66,6 +66,4 @@ async function main() {
   });
 
   console.log(JSON.stringify(result.content, null, 2));
-}
-
-main().catch(console.error);
+});

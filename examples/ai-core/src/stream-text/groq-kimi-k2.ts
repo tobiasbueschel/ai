@@ -1,8 +1,8 @@
 import { groq } from '@ai-sdk/groq';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: groq('moonshotai/kimi-k2-instruct'),
     prompt: 'Invent a new holiday and describe its traditions.',
@@ -15,6 +15,4 @@ async function main() {
   console.log();
   console.log('Token usage:', await result.usage);
   console.log('Finish reason:', await result.finishReason);
-}
-
-main().catch(console.error);
+});

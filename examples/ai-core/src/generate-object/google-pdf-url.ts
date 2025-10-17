@@ -1,9 +1,9 @@
 import { google } from '@ai-sdk/google';
+import { run } from '../lib/run';
 import { generateObject } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const { object: summary } = await generateObject({
     model: google('gemini-1.5-pro-latest'),
     schema: z.object({
@@ -32,6 +32,4 @@ async function main() {
   });
 
   console.log(summary);
-}
-
-main().catch(console.error);
+});

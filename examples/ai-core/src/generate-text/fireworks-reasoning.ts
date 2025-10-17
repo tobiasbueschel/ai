@@ -1,12 +1,12 @@
 import { fireworks } from '@ai-sdk/fireworks';
+import { run } from '../lib/run';
 import {
   extractReasoningMiddleware,
   generateText,
   wrapLanguageModel,
 } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: wrapLanguageModel({
       model: fireworks('accounts/fireworks/models/qwq-32b'),
@@ -26,6 +26,4 @@ async function main() {
 
   console.log();
   console.log('Usage:', result.usage);
-}
-
-main().catch(console.error);
+});

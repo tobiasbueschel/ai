@@ -1,8 +1,8 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: anthropic('claude-3-5-sonnet-latest'),
     prompt:
@@ -39,6 +39,4 @@ async function main() {
       console.log();
     }
   }
-}
-
-main().catch(console.error);
+});

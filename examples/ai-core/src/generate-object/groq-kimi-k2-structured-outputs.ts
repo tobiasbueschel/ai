@@ -1,9 +1,9 @@
 import { groq } from '@ai-sdk/groq';
+import { run } from '../lib/run';
 import { generateObject } from 'ai';
 import { z } from 'zod';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateObject({
     model: groq('moonshotai/kimi-k2-instruct'),
     schema: z.object({
@@ -17,6 +17,4 @@ async function main() {
   });
 
   console.log(JSON.stringify(result.object, null, 2));
-}
-
-main().catch(console.error);
+});

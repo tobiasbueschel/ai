@@ -1,9 +1,9 @@
 import { bedrock } from '@ai-sdk/amazon-bedrock';
+import { run } from '../lib/run';
 import { streamText, tool, stepCountIs } from 'ai';
 import { z } from 'zod';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: bedrock('anthropic.claude-3-5-sonnet-20241022-v2:0'),
     tools: {
@@ -56,6 +56,4 @@ async function main() {
 
   console.log();
   console.log('Usage:', await result.usage);
-}
-
-main().catch(console.error);
+});

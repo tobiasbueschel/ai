@@ -1,11 +1,11 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 import fs from 'node:fs';
 
 const errorMessage = fs.readFileSync('data/error-message.txt', 'utf8');
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: anthropic('claude-3-5-sonnet-20240620'),
     messages: [
@@ -42,6 +42,4 @@ async function main() {
     'Cache write tokens:',
     result.providerMetadata?.anthropic?.cacheCreationInputTokens,
   );
-}
-
-main().catch(console.error);
+});

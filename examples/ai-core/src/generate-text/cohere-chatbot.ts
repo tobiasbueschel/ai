@@ -1,5 +1,5 @@
 import { ModelMessage, generateText } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 import * as readline from 'node:readline/promises';
 import { weatherTool } from '../tools/weather-tool';
 import { cohere } from '@ai-sdk/cohere';
@@ -11,7 +11,7 @@ const terminal = readline.createInterface({
 
 const messages: ModelMessage[] = [];
 
-async function main() {
+run(async () => {
   let toolResponseAvailable = false;
 
   while (true) {
@@ -51,6 +51,4 @@ async function main() {
 
     toolResponseAvailable = toolCalls.length > 0;
   }
-}
-
-main().catch(console.error);
+});

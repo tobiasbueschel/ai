@@ -1,8 +1,8 @@
 import { streamText } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 import fs from 'node:fs';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: 'google/gemini-2.0-flash',
     messages: [
@@ -30,6 +30,4 @@ async function main() {
   console.log();
   console.log('Token usage:', await result.usage);
   console.log('Finish reason:', await result.finishReason);
-}
-
-main().catch(console.error);
+});

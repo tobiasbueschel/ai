@@ -3,10 +3,10 @@ import {
   vertex,
 } from '@ai-sdk/google-vertex';
 import { experimental_generateImage as generateImage } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 import { presentImages } from '../lib/present-image';
 
-async function main() {
+run(async () => {
   const { image } = await generateImage({
     model: vertex.image('imagen-3.0-generate-002'),
     prompt: 'A burrito launched through a tunnel',
@@ -19,6 +19,4 @@ async function main() {
   });
 
   await presentImages([image]);
-}
-
-main().catch(console.error);
+});

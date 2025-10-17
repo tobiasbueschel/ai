@@ -1,10 +1,10 @@
 import { bedrock, BedrockProviderOptions } from '@ai-sdk/amazon-bedrock';
+import { run } from '../lib/run';
 import { generateObject } from 'ai';
 import { z } from 'zod';
 import fs from 'fs';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateObject({
     model: bedrock('us.anthropic.claude-sonnet-4-20250514-v1:0'),
     schema: z.object({
@@ -35,6 +35,4 @@ async function main() {
   });
 
   console.log('Response:', JSON.stringify(result, null, 2));
-}
-
-main().catch(console.error);
+});

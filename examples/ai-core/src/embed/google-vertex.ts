@@ -1,8 +1,8 @@
 import { vertex } from '@ai-sdk/google-vertex';
 import { embed } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 
-async function main() {
+run(async () => {
   const { embedding, usage } = await embed({
     model: vertex.textEmbeddingModel('text-embedding-004'),
     value: 'sunny day at the beach',
@@ -10,6 +10,4 @@ async function main() {
 
   console.log(embedding);
   console.log(usage);
-}
-
-main().catch(console.error);
+});

@@ -1,10 +1,10 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { generateText, stepCountIs, tool } from 'ai';
 import { MockLanguageModelV3 } from 'ai/test';
-import 'dotenv/config';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: openai('gpt-4o'),
     tools: {
@@ -55,6 +55,4 @@ async function main() {
 
   console.log('Response messages:');
   console.log(JSON.stringify(result.response.messages, null, 2));
-}
-
-main().catch(console.error);
+});

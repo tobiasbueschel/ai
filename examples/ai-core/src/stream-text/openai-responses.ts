@@ -1,8 +1,8 @@
-import 'dotenv/config';
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: openai.responses('gpt-4o-mini'),
     maxOutputTokens: 100,
@@ -19,6 +19,4 @@ async function main() {
   console.log('Usage:', await result.usage);
   console.log();
   console.log((await result.request).body);
-}
-
-main().catch(console.error);
+});

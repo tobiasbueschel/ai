@@ -1,8 +1,8 @@
 import { huggingface } from '@ai-sdk/huggingface';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   console.log('Low temperature (0.1) - More focused:');
   const lowTemp = await generateText({
     model: huggingface('meta-llama/Llama-3.1-8B-Instruct'),
@@ -25,6 +25,4 @@ async function main() {
 
   // console.log('Usage comparison:');
   // console.log('High temp usage:', highTemp.usage);
-}
-
-main().catch(console.error);
+});

@@ -1,10 +1,10 @@
 import { bedrock } from '@ai-sdk/amazon-bedrock';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const model = bedrock('us.anthropic.claude-3-7-sonnet-20250219-v1:0');
 
   const testCases = [
@@ -97,6 +97,4 @@ async function main() {
   }
 
   console.log('All supported document types tested!');
-}
-
-main().catch(console.error);
+});

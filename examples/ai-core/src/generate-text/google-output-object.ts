@@ -1,9 +1,9 @@
 import { google } from '@ai-sdk/google';
+import { run } from '../lib/run';
 import { generateText, Output } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const { experimental_output } = await generateText({
     model: google('gemini-2.5-flash'),
     experimental_output: Output.object({
@@ -25,6 +25,4 @@ async function main() {
   });
 
   console.log(experimental_output);
-}
-
-main().catch(console.error);
+});

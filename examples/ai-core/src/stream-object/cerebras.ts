@@ -1,9 +1,9 @@
 import { cerebras } from '@ai-sdk/cerebras';
+import { run } from '../lib/run';
 import { streamObject } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const result = streamObject({
     model: cerebras('gpt-oss-120b'),
     schema: z.object({
@@ -28,6 +28,4 @@ async function main() {
 
   console.log();
   console.log('Token usage:', await result.usage);
-}
-
-main().catch(console.error);
+});

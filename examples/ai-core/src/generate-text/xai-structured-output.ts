@@ -1,9 +1,9 @@
-import 'dotenv/config';
 import { generateText, Output } from 'ai';
+import { run } from '../lib/run';
 import { xai } from '@ai-sdk/xai';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const { experimental_output } = await generateText({
     model: xai('grok-3-beta'),
     experimental_output: Output.object({
@@ -23,6 +23,4 @@ async function main() {
     }),
     prompt: 'Generate an example person for testing.',
   });
-}
-
-main().catch(console.error);
+});

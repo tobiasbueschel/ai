@@ -1,8 +1,8 @@
 import { fal } from '@ai-sdk/fal';
+import { run } from '../lib/run';
 import { experimental_transcribe as transcribe } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await transcribe({
     model: fal.transcription('whisper'),
     audio: new URL(
@@ -16,6 +16,4 @@ async function main() {
   console.log('Segments:', result.segments);
   console.log('Warnings:', result.warnings);
   console.log('Responses:', result.responses);
-}
-
-main().catch(console.error);
+});

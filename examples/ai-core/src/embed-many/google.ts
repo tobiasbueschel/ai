@@ -1,8 +1,8 @@
 import { google } from '@ai-sdk/google';
 import { embedMany } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 
-async function main() {
+run(async () => {
   const { embeddings, usage } = await embedMany({
     model: google.textEmbeddingModel('gemini-embedding-001'),
     values: [
@@ -14,6 +14,4 @@ async function main() {
 
   console.log(embeddings);
   console.log(usage);
-}
-
-main().catch(console.error);
+});

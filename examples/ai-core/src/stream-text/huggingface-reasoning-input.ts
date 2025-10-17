@@ -1,8 +1,8 @@
 import { huggingface } from '@ai-sdk/huggingface';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: huggingface('deepseek-ai/DeepSeek-R1'),
     messages: [
@@ -29,6 +29,4 @@ async function main() {
   }
 
   console.log('\nToken usage:', await result.usage);
-}
-
-main().catch(console.error);
+});

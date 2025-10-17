@@ -1,8 +1,8 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   try {
     const { textStream } = streamText({
       model: openai('gpt-3.5-turbo'),
@@ -21,6 +21,4 @@ async function main() {
       console.log('\n\nAbortError: The run was aborted.');
     }
   }
-}
-
-main().catch(console.error);
+});

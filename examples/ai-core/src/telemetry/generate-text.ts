@@ -1,6 +1,6 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-node';
@@ -13,7 +13,7 @@ const sdk = new NodeSDK({
 
 sdk.start();
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: openai('gpt-4o'),
     maxOutputTokens: 50,
@@ -31,6 +31,4 @@ async function main() {
   console.log(result.text);
 
   await sdk.shutdown();
-}
-
-main().catch(console.error);
+});

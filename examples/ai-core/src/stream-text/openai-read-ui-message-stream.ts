@@ -1,9 +1,9 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { readUIMessageStream, stepCountIs, streamText, tool } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: openai('gpt-4.1-mini'),
     tools: {
@@ -32,6 +32,4 @@ async function main() {
     console.clear();
     console.log(JSON.stringify(uiMessage, null, 2));
   }
-}
-
-main().catch(console.error);
+});

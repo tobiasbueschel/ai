@@ -1,8 +1,8 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { simulateStreamingMiddleware, streamText, wrapLanguageModel } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: wrapLanguageModel({
       model: openai('gpt-4o'),
@@ -15,6 +15,4 @@ async function main() {
   for await (const chunk of result.textStream) {
     console.log(chunk);
   }
-}
-
-main().catch(console.error);
+});

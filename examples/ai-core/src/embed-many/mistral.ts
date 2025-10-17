@@ -1,8 +1,8 @@
 import { mistral } from '@ai-sdk/mistral';
 import { embedMany } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 
-async function main() {
+run(async () => {
   const { embeddings, usage } = await embedMany({
     model: mistral.embedding('mistral-embed'),
     values: [
@@ -14,6 +14,4 @@ async function main() {
 
   console.log(embeddings);
   console.log(usage);
-}
-
-main().catch(console.error);
+});

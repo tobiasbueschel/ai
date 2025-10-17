@@ -1,5 +1,5 @@
 import { generateText, tool } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 import { z } from 'zod';
 import { bedrock } from '@ai-sdk/amazon-bedrock';
 
@@ -121,7 +121,7 @@ const weatherData: Record<string, number> = {
   Birmingham: 81.9,
 };
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: bedrock('anthropic.claude-3-5-sonnet-20241022-v2:0'),
     tools: {
@@ -171,6 +171,4 @@ async function main() {
   console.log(result.text);
   console.log(JSON.stringify(result.toolCalls, null, 2));
   console.log(JSON.stringify(result.providerMetadata, null, 2));
-}
-
-main().catch(console.error);
+});

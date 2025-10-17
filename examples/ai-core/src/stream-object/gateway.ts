@@ -1,8 +1,8 @@
 import { streamObject } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const result = streamObject({
     model: 'xai/grok-3',
     schema: z.object({
@@ -27,6 +27,4 @@ async function main() {
 
   console.log();
   console.log('Token usage:', await result.usage);
-}
-
-main().catch(console.error);
+});

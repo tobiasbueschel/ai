@@ -1,9 +1,9 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
 import fs from 'node:fs';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: openai('gpt-4o-audio-preview'),
     messages: [
@@ -22,6 +22,4 @@ async function main() {
   });
 
   console.log(result.text);
-}
-
-main().catch(console.error);
+});

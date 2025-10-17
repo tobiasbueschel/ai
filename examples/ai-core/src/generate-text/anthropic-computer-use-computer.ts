@@ -1,9 +1,9 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import { generateText, stepCountIs } from 'ai';
-import 'dotenv/config';
 import fs from 'node:fs';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: anthropic('claude-3-5-sonnet-20241022'),
     tools: {
@@ -53,6 +53,4 @@ async function main() {
   console.log(result.text);
   console.log(result.finishReason);
   console.log(JSON.stringify(result.toolCalls, null, 2));
-}
-
-main().catch(console.error);
+});

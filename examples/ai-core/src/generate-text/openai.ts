@@ -1,8 +1,8 @@
 import { openai } from '@ai-sdk/openai';
 import { generateText } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 
-async function main() {
+run(async () => {
   const { text, usage } = await generateText({
     model: openai('gpt-5-pro'),
     prompt: 'Invent a new holiday and describe its traditions.',
@@ -11,6 +11,4 @@ async function main() {
   console.log(text);
   console.log();
   console.log('Usage:', usage);
-}
-
-main().catch(console.error);
+});

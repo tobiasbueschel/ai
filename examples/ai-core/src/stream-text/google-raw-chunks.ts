@@ -1,8 +1,8 @@
 import { google } from '@ai-sdk/google';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: google('gemini-2.0-flash'),
     prompt: 'Count from 1 to 3 slowly.',
@@ -31,6 +31,4 @@ async function main() {
   console.log('Text chunks:', textChunkCount);
   console.log('Raw chunks:', rawChunkCount);
   console.log('Final text:', await result.text);
-}
-
-main().catch(console.error);
+});

@@ -1,11 +1,11 @@
 import { deepseek } from '@ai-sdk/deepseek';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 import fs from 'node:fs';
 
 const errorMessage = fs.readFileSync('data/error-message.txt', 'utf8');
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: deepseek.chat('deepseek-chat'),
     messages: [
@@ -33,6 +33,4 @@ async function main() {
   console.log(result.usage);
   console.log(result.providerMetadata);
   // "prompt_cache_hit_tokens":1856,"prompt_cache_miss_tokens":5}
-}
-
-main().catch(console.error);
+});

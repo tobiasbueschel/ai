@@ -1,8 +1,8 @@
 import { huggingface } from '@ai-sdk/huggingface';
+import { run } from '../lib/run';
 import { extractReasoningMiddleware, streamText, wrapLanguageModel } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: wrapLanguageModel({
       model: huggingface('deepseek-ai/DeepSeek-R1'),
@@ -39,6 +39,4 @@ async function main() {
   console.log(await result.reasoning);
   console.log();
   console.log('Token usage:', await result.usage);
-}
-
-main().catch(console.error);
+});

@@ -1,8 +1,8 @@
 import { vertex } from '@ai-sdk/google-vertex';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: vertex('gemini-1.5-flash'),
     messages: [
@@ -24,6 +24,4 @@ async function main() {
   });
 
   console.log(result.text);
-}
-
-main().catch(console.error);
+});

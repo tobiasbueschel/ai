@@ -1,8 +1,8 @@
 import { cohere } from '@ai-sdk/cohere';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: cohere('command-a-reasoning-08-2025'),
     prompt:
@@ -23,6 +23,4 @@ async function main() {
 
   console.log();
   console.log('Warnings:', await result.warnings);
-}
-
-main().catch(console.error);
+});

@@ -1,4 +1,5 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import {
   extractReasoningMiddleware,
   stepCountIs,
@@ -7,10 +8,9 @@ import {
   ToolResultPart,
   wrapLanguageModel,
 } from 'ai';
-import 'dotenv/config';
 import { weatherTool } from '../tools/weather-tool';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: wrapLanguageModel({
       model: anthropic('claude-3-opus-20240229'),
@@ -84,6 +84,4 @@ async function main() {
       }
     }
   }
-}
-
-main().catch(console.error);
+});

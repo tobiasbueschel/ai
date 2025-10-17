@@ -1,10 +1,10 @@
 import { google } from '@ai-sdk/google';
+import { run } from '../lib/run';
 import { generateText, tool } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 import { weatherTool } from '../tools/weather-tool';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: google('gemini-1.5-pro-latest'),
     maxOutputTokens: 512,
@@ -23,6 +23,4 @@ async function main() {
   });
 
   console.log(JSON.stringify(result, null, 2));
-}
-
-main().catch(console.error);
+});

@@ -1,8 +1,8 @@
 import { groq } from '@ai-sdk/groq';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: groq('openai/gpt-oss-120b'),
     prompt:
@@ -15,6 +15,4 @@ async function main() {
 
   console.log(result.text);
   console.log('\nUsage:', result.usage);
-}
-
-main().catch(console.error);
+});

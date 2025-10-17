@@ -1,8 +1,8 @@
-import 'dotenv/config';
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: openai('gpt-5-nano'),
     prompt: 'What color is the sky in one word?',
@@ -23,6 +23,4 @@ async function main() {
   //     serviceTier: 'flex'
   //   }
   // }
-}
-
-main().catch(console.error);
+});

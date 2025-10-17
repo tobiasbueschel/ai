@@ -1,9 +1,9 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { stepCountIs, Output, streamText, tool } from 'ai';
-import 'dotenv/config';
 import { z } from 'zod';
 
-async function main() {
+run(async () => {
   const { experimental_partialOutputStream: partialOutputStream } = streamText({
     model: openai('gpt-4o-mini'),
     tools: {
@@ -40,6 +40,4 @@ async function main() {
     console.clear();
     console.log(partialOutput);
   }
-}
-
-main().catch(console.error);
+});

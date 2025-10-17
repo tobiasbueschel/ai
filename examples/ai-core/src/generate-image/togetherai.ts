@@ -1,9 +1,9 @@
 import { togetherai } from '@ai-sdk/togetherai';
+import { run } from '../lib/run';
 import { experimental_generateImage as generateImage } from 'ai';
 import { presentImages } from '../lib/present-image';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateImage({
     model: togetherai.image('black-forest-labs/FLUX.1-dev'),
     prompt: 'A delighted resplendent quetzal mid flight amidst raindrops',
@@ -17,6 +17,4 @@ async function main() {
   });
 
   await presentImages(result.images);
-}
-
-main().catch(console.error);
+});

@@ -1,8 +1,8 @@
 import { deepseek } from '@ai-sdk/deepseek';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: deepseek('deepseek-reasoner'),
     prompt: 'How many "r"s are in the word "strawberry"?',
@@ -15,6 +15,4 @@ async function main() {
       process.stdout.write(part.text);
     }
   }
-}
-
-main().catch(console.error);
+});

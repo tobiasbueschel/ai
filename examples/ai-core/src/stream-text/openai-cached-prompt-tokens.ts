@@ -1,8 +1,7 @@
 import { openai } from '@ai-sdk/openai';
 import { streamText } from 'ai';
-import 'dotenv/config';
-import { setTimeout } from 'node:timers/promises';
 import { performance } from 'node:perf_hooks';
+import { run } from '../lib/run';
 
 const longPrompt = `
 Arms and the man I sing, who first made way,
@@ -153,7 +152,7 @@ function createCompletion() {
   });
 }
 
-async function main() {
+run(async () => {
   let start = performance.now();
   let result = await createCompletion();
   let end = performance.now();
@@ -166,8 +165,6 @@ async function main() {
     process.stdout.write(delta);
   }
   process.stdout.write('\n\n');
-}
 
-main()
-  .then(() => console.log(`done!`))
-  .catch(console.error);
+  console.log(`done!`);
+});

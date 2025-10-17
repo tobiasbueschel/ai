@@ -1,9 +1,9 @@
 import { azure } from '@ai-sdk/azure';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 import fs from 'node:fs';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: azure.responses('gpt-4.1-mini'), // please question about your documents.
     messages: [
@@ -26,6 +26,4 @@ async function main() {
   });
 
   console.log(result.text);
-}
-
-main().catch(console.error);
+});

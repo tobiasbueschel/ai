@@ -1,8 +1,8 @@
 import { google } from '@ai-sdk/google';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: google('gemini-1.5-pro-latest'),
     system: 'You are a comedian. Only give funny answers.',
@@ -22,6 +22,4 @@ async function main() {
     promptFeedback: googleMetadata?.promptFeedback,
     safetyRatings: googleMetadata?.safetyRatings,
   });
-}
-
-main().catch(console.error);
+});

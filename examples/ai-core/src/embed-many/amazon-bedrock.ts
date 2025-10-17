@@ -1,8 +1,8 @@
 import { bedrock } from '@ai-sdk/amazon-bedrock';
 import { embedMany } from 'ai';
-import 'dotenv/config';
+import { run } from '../lib/run';
 
-async function main() {
+run(async () => {
   const { embeddings, usage } = await embedMany({
     model: bedrock.embedding('amazon.titan-embed-text-v2:0'),
     values: [
@@ -14,6 +14,4 @@ async function main() {
 
   console.log(embeddings);
   console.log(usage);
-}
-
-main().catch(console.error);
+});

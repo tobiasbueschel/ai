@@ -1,9 +1,9 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 import fs from 'node:fs';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: anthropic('claude-3-5-sonnet-20241022'),
     messages: [
@@ -55,6 +55,4 @@ async function main() {
         break;
     }
   }
-}
-
-main().catch(console.error);
+});

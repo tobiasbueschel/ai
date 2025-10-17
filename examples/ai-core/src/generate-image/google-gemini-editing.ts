@@ -1,9 +1,9 @@
 import { google } from '@ai-sdk/google';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
 import fs from 'node:fs';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   console.log('Generating base cat image...');
   const baseResult = await generateText({
     model: google('gemini-2.5-flash-image-preview'),
@@ -62,6 +62,4 @@ async function main() {
       console.log(`Saved edited image: output/cat-wizard-${timestamp}.png`);
     }
   }
-}
-
-main().catch(console.error);
+});

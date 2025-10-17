@@ -1,8 +1,8 @@
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { streamObject } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamObject({
     model: openai('gpt-4o-2024-08-06'),
     output: 'no-schema',
@@ -14,6 +14,4 @@ async function main() {
     console.clear();
     console.log(partialObject);
   }
-}
-
-main().catch(console.error);
+});

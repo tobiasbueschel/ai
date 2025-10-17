@@ -1,6 +1,6 @@
 import { createAmazonBedrock } from '@ai-sdk/amazon-bedrock';
+import { run } from '../lib/run';
 import { stepCountIs, ModelMessage, streamText, tool } from 'ai';
-import 'dotenv/config';
 import * as readline from 'node:readline/promises';
 import { z } from 'zod';
 
@@ -23,7 +23,7 @@ const terminal = readline.createInterface({
 
 const messages: ModelMessage[] = [];
 
-async function main() {
+run(async () => {
   while (true) {
     const userInput = await terminal.question('You: ');
 
@@ -70,6 +70,4 @@ async function main() {
 
     messages.push(...(await result.response).messages);
   }
-}
-
-main().catch(console.error);
+});

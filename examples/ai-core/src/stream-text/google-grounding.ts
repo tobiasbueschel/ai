@@ -1,8 +1,8 @@
 import { google } from '@ai-sdk/google';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: google('gemini-2.5-flash'),
     tools: {
@@ -28,6 +28,4 @@ async function main() {
   console.log();
   console.log('Token usage:', await result.usage);
   console.log('Finish reason:', await result.finishReason);
-}
-
-main().catch(console.error);
+});

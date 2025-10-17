@@ -1,8 +1,8 @@
 import { xai } from '@ai-sdk/xai';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = streamText({
     model: xai('grok-3-latest'),
     prompt:
@@ -32,6 +32,4 @@ async function main() {
   console.log('Sources:', await result.sources);
   console.log('Finish reason:', await result.finishReason);
   console.log('Usage:', await result.usage);
-}
-
-main().catch(console.error);
+});

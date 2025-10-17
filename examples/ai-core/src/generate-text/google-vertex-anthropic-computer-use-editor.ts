@@ -1,8 +1,8 @@
-import 'dotenv/config';
 import { vertexAnthropic } from '@ai-sdk/google-vertex/anthropic';
+import { run } from '../lib/run';
 import { generateText, stepCountIs } from 'ai';
 
-async function main() {
+run(async () => {
   let editorContent = `
 ## README
 This is a test file.
@@ -41,6 +41,4 @@ This is a test file.
   console.log('TEXT', result.text);
   console.log();
   console.log('EDITOR CONTENT', editorContent);
-}
-
-main().catch(console.error);
+});

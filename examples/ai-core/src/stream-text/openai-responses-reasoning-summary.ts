@@ -1,8 +1,8 @@
-import 'dotenv/config';
 import { openai } from '@ai-sdk/openai';
+import { run } from '../lib/run';
 import { streamText } from 'ai';
 
-async function main() {
+run(async () => {
   const result = streamText({
     // supported: o4-mini, o3, o3-mini and o1
     model: openai.responses('o3-mini'),
@@ -30,6 +30,4 @@ async function main() {
   console.log('Finish reason:', await result.finishReason);
   console.log('Usage:', await result.usage);
   console.log('Provider metadata:', await result.providerMetadata);
-}
-
-main().catch(console.error);
+});

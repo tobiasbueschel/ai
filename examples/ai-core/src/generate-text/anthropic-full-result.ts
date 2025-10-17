@@ -1,14 +1,12 @@
 import { anthropic } from '@ai-sdk/anthropic';
+import { run } from '../lib/run';
 import { generateText } from 'ai';
-import 'dotenv/config';
 
-async function main() {
+run(async () => {
   const result = await generateText({
     model: anthropic('claude-3-5-sonnet-20240620'),
     prompt: 'Invent a new holiday and describe its traditions.',
   });
 
   console.log(JSON.stringify(result, null, 2));
-}
-
-main().catch(console.error);
+});
